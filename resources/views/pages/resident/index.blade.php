@@ -19,7 +19,7 @@
                     <table class="table table-responsive table-bordered table-hovered">
                         <thead>
                             <tr>
-                                <th>{{ $item->nik }}</th>
+                                <th>NIK</th>
                                 <th>Nama</th>
                                 <th>Jenis Kelamin</th>
                                 <th>Tempat, Tanggal Lahir</th>
@@ -32,31 +32,47 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ($residents as $item)
-                            <tr>
-                                <td>NIK</td>
-                                <td>Nama</td>
-                                <td>Jenis Kelamin</td>
-                                <td>Tempat, Tanggal Lahir</td>
-                                <td>Alamat</td>
-                                <td>Agama</td>
-                                <td>Status Perkawinan</td>
-                                <td>Pekerjaan</td>
-                                <td>Telepon</td>
-                                <td>Status Penduduk</td>
-                                <td>
-                                    <div class="d-flex gap-2">
-                                        <a href="/resident/{id}" class="d-inline-block mr-2 btn btn-sm btn-warning">
-                                        <i class="fas fa-pen"></i></a>
-                                        <a href="/resident/{id}" class="btn btn-sm btn-danger">
-                                            <i class="fas fa-eraser"></i></a>
-                                    </div>
-                                </td>
-                            </tr>    
-                            @endforeach
-                            
-                        </tbody>
+
+                        
+                        @if (count($residents) < 1 )
+                            <tbody>
+                                <tr>
+                                    <td colspan="11">
+                                        <p class="pt-3 text-center">Tidak ada data</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        @else
+                            <tbody>
+                                @foreach ($residents as $item)
+                                <tr>
+                                    <td>{{ $item->nik }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->gender }}</td>
+                                    <td>{{ $item->birth_place }}, {{ $item->birth_date }}</td>
+                                    <td>{{ $item->address }}</td>
+                                    <td>{{ $item->religion }}</td>
+                                    <td>{{ $item->marital_status }}</td>
+                                    <td>{{ $item->occupation }}</td>
+                                    <td>{{ $item->phone }}</td>
+                                    <td>{{ $item->status }}</td>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <a href="/resident/{id}" class="d-inline-block mr-2 btn btn-sm btn-warning">
+                                            <i class="fas fa-pen"></i></a>
+                                            <a href="/resident/{id}" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-eraser"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>    
+                                @endforeach
+                                
+                            </tbody>
+                        @endif
+
+
+                        
                     </table>
                 </div>
                 
